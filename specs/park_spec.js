@@ -5,9 +5,16 @@ const Dinosaur = require('../models/dinosaur.js');
 describe('Park', function() {
 
   let park;
+  let trex;
+  let pachy;
+  let dread;
 
   beforeEach(function () {
     park = new Park("Jurrasic Spark");
+    trex = new Dinosaur('t-rex', 'carnivore', 50);
+    pachy = new Dinosaur('Pachycephalosaurus', 'herbivore', 75);
+    dread = new Dinosaur('Dreadnoughtus', 'herbivore', 100);
+
   });
 
   it('should have a name', function(){
@@ -35,7 +42,12 @@ describe('Park', function() {
     assert.deepStrictEqual(park.dinosaurs, []);
   });
 
-  it('should be able to find the dinosaur that attracts the most visitors');
+  it('should be able to find the dinosaur that attracts the most visitors', function() {
+    park.addDinosaur(trex);
+    park.addDinosaur(pachy);
+    park.addDinosaur(dread);
+    assert.strictEqual(park.mostPopularDinosaur, dread);
+  });
 
   it('should be able to find all dinosaurs of a particular species');
 
